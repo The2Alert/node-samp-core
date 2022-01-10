@@ -1,7 +1,7 @@
 import {EventEmitter, DefaultEventMap} from "tsee";
 import * as amx from "@sa-mp/amx";
 import {Position} from "..";
-import {ObjectFunctions} from "./functions";
+import {ObjectFunctions, ObjectAttachOptions} from "./functions";
 
 export * from "./enums";
 export * from "./functions";
@@ -15,6 +15,7 @@ export interface ObjectOptions extends Position {
     model: number;
     rot: Position;
     drawDistance?: number;
+    attach?: ObjectAttachOptions;
 }
 
 export class SampObject extends ObjectFunctions {

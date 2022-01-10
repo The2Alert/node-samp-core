@@ -1,6 +1,6 @@
 import {EventEmitter, DefaultEventMap} from "tsee";
 import * as amx from "@sa-mp/amx";
-import {Player, Position, VehicleParams, VehicleDoors, VehicleWindows, VehicleDamageStatus} from "..";
+import {Player, Position, VehicleParams, VehicleDoors, VehicleWindows, VehicleDamageStatus, ObjectAttachOptions} from "..";
 import {VehicleFunctions, VehiclePlayerOptions} from "./functions";
 
 export * from "./interfaces";
@@ -39,6 +39,8 @@ export interface VehicleOptions extends Position {
     angularVelocity?: Position;
     damageStatus?: VehicleDamageStatus;
     world?: number;
+    attach?: ObjectAttachOptions;
+    offset?: Position;
 }
 
 export class Vehicle extends VehicleFunctions {

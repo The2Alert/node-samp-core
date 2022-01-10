@@ -35,7 +35,11 @@ export class PlayerObject {
         return this;
     }
 
-    public attach(attached: Vehicle, {offset, rot}: PlayerObjectAttachOptions): void {
+    public attach(attached: Vehicle, options?: PlayerObjectAttachOptions): void {
+        let attachedOptions: PlayerObjectAttachOptions | undefined;
+        if(typeof attached.idOrOptions === "object")
+            attachedOptions = attached.idOrOptions.attach;
+        const {offset, rot}: PlayerObjectAttachOptions = options ?? attachedOptions ?? {offset: {x: 0, y: 0, z: 0}, rot: {x: 0, y: 0, z: 0}};
         amx.callNative("AttachPlayerObjectToVehicle", "iiiffffff", this.player.id, this.id, attached.id, offset.x, offset.y, offset.z, rot.x, rot.y, rot.z);
     }
 

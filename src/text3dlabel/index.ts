@@ -41,11 +41,18 @@ export class Text3DLabel {
         return Boolean(amx.callNative("Delete3DTextLabel", "i", this.id).retval);
     }
 
-    public attach(attached: Player | Vehicle, offset: Position): void {
-        if(attached instanceof Player)
+    public attach(attached: Player | Vehicle, offset?: Position): void {
+        if(attached instanceof Player) {
+            offset ??= {x: 0, y: 0, z: 0};
             amx.callNative("Attach3DTextLabelToPlayer", "iifff", this.id, attached.id, offset.x, offset.y, offset.z);
-        else if(attached instanceof Vehicle)
+        } else if(attached instanceof Vehicle) {
+            let attachedOffset: Position | undefined;
+            if(typeof attached.idOrOptions === "object")
+                attachedOffset = attached.idOrOptions.offset;
+            offset ??= attachedOffset;
+            offset ??= {x: 0, y: 0, z: 0};
             amx.callNative("Attach3DTextLabelToVehicle", "iifff", this.id, attached.id, offset.x, offset.y, offset.z);
+        }
     }
 
     public update(text: string, color: number = 0xFFFFFFAA): void {

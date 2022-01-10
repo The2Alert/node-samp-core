@@ -62,13 +62,23 @@ export class ObjectFunctions {
         return this;
     }
 
-    public attach(attached: Vehicle | SampObject | Player, {offset, rot, syncRotation}: ObjectAttachOptions): void {
-        if(attached instanceof Vehicle)
+    public attach(attached: Vehicle | SampObject | Player, options?: ObjectAttachOptions): void {
+        if(attached instanceof Vehicle) {
+            let attachedOptions: ObjectAttachOptions | undefined;
+            if(typeof attached.idOrOptions === "object")
+                attachedOptions = attached.idOrOptions.attach;
+            const {offset, rot}: ObjectAttachOptions = options ?? attachedOptions ?? {offset: {x: 0, y: 0, z: 0}, rot: {x: 0, y: 0, z: 0}};
             amx.callNative("AttachObjectToVehicle", "iiffffff", this.id, attached.id, offset.x, offset.y, offset.z, rot.x, rot.y, rot.z);
-        else if(attached instanceof SampObject)
+        } else if(attached instanceof SampObject) {
+            let attachedOptions: ObjectAttachOptions | undefined;
+            if(typeof attached.idOrOptions === "object")
+                attachedOptions = attached.idOrOptions.attach;
+            const {offset, rot, syncRotation}: ObjectAttachOptions = options ?? attachedOptions ?? {offset: {x: 0, y: 0, z: 0}, rot: {x: 0, y: 0, z: 0}};
             amx.callNative("AttachObjectToObject", "iiffffffi", this.id, attached.id, offset.x, offset.y, offset.z, rot.x, rot.y, rot.z, Number(syncRotation ?? true));
-        else if(attached instanceof Player)
-            amx.callNative("AttachObjectToPlayer", "iiffffff", this.id, attached.id, offset.x, offset.y, offset.z, rot.x, rot.y, rot.z);    
+        } else if(attached instanceof Player) {
+            const {offset, rot}: ObjectAttachOptions = options ?? {offset: {x: 0, y: 0, z: 0}, rot: {x: 0, y: 0, z: 0}};
+            amx.callNative("AttachObjectToPlayer", "iiffffff", this.id, attached.id, offset.x, offset.y, offset.z, rot.x, rot.y, rot.z);
+        }
     }
 
     public set pos({x, y, z}: Position) {

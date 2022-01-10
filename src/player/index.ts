@@ -276,7 +276,8 @@ import {
     ContextKey as PlayerContextKey,
     ContextDialog as PlayerContextDialog,
     ContextEvents as PlayerContextEvents,
-    Service as PlayerService
+    Service as PlayerService,
+    Extension as PlayerExtension
 } from "./context";
 
 export namespace Player {
@@ -288,6 +289,7 @@ export namespace Player {
     export type ContextDialog = PlayerContextDialog;
     export type ContextEvents = PlayerContextEvents;
     export const Service = PlayerService;
+    export const Extension = PlayerExtension;
 }
 
 Player.init();

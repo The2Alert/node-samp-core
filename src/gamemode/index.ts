@@ -34,7 +34,8 @@ import {
     PersonalFactory as GameModePersonalFactory, 
     Context as GameModeContext, 
     ContextEvents as GameModeContextEvents,
-    Service as GameModeService
+    Service as GameModeService,
+    Extension as GameModeExtension
 } from "./context";
 
 export namespace GameMode {
@@ -43,6 +44,7 @@ export namespace GameMode {
     export const Context = GameModeContext;
     export type ContextEvents = GameModeContextEvents;
     export const Service = GameModeService;
+    export const Extension = GameModeExtension;
 }
 
 GameMode.init();

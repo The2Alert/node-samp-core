@@ -1,9 +1,10 @@
 import * as ctx from "ctx-api";
-import {Context, ContextCommand, ContextDialog, ContextKey, PersonalFactory} from ".";
+import {Context, ContextCommand, ContextDialog, ContextKey, Extension, PersonalFactory} from ".";
 import {Player, Actor, Vehicle, Dialog, GameMode} from "../..";
 
 export interface FactoryOptions {
     gamemodeFactory?: InstanceType<typeof GameMode.Factory> | null;
+    extensions?: (typeof Extension)[];
     commands?: boolean;
     keys?: boolean;
     dialogs?: boolean;
@@ -19,9 +20,9 @@ export class Factory extends ctx.Factory {
     public options: Required<FactoryOptions>;
     public gamemode: InstanceType<typeof GameMode.Factory> | null;
 
-    constructor(rootContextClass: typeof Context, {gamemodeFactory = null, commands = false, keys = false, dialogs = false}: FactoryOptions) {
-        super(rootContextClass);
-        this.options = {gamemodeFactory, commands, keys, dialogs};
+    constructor(rootContextClass: typeof Context, {gamemodeFactory = null, commands = false, keys = false, dialogs = false, extensions = []}: FactoryOptions) {
+        super(rootContextClass, extensions);
+        this.options = {gamemodeFactory, commands, keys, dialogs, extensions};
         this.gamemode = gamemodeFactory;
     }
 

@@ -1,12 +1,13 @@
 import * as ctx from "ctx-api";
+import {Extension} from ".";
 import {GameMode, Actor, SampObject, Player, Rcon, Vehicle} from "../..";
 import {Context} from "./context";
 import {ContextEvents} from "./context-events";
 import {PersonalFactory} from "./personal-factory";
 
 export class Factory extends ctx.Factory {
-    public static create(rootContextClass: typeof Context): Factory {
-        const factory = new Factory(rootContextClass);
+    public static create(rootContextClass: typeof Context, extensionsClasses: (typeof Extension)[]): Factory {
+        const factory = new Factory(rootContextClass, extensionsClasses);
         factory.create();
         return factory;
     }

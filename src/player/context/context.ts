@@ -1,4 +1,5 @@
 import {ContextMixin, IContext} from "ctx-api";
+import {EventLoopMixin} from "ctx-api-eventloop";
 import {Factory} from ".";
 import {Dialog, DialogResponse, Player} from "..";
 import {ContextEvents} from "./context-events";
@@ -23,7 +24,7 @@ export interface ContextDialog {
 
 export interface Context extends ContextEvents {}
 
-export class Context extends ContextMixin(Player) {
+export class Context extends EventLoopMixin(ContextMixin(Player)) {
     public contextCommands?: Record<string, ContextCommand>;
     public contextKeys?: Record<string, ContextKey>;
     public contextDialogs?: Record<string, ContextDialog>;
