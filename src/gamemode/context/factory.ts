@@ -6,7 +6,7 @@ import {ContextEvents} from "./context-events";
 import {PersonalFactory} from "./personal-factory";
 
 export class Factory extends ctx.Factory {
-    public static create(rootContextClass: typeof Context, extensionsClasses: (typeof Extension)[]): Factory {
+    public static create(rootContextClass: typeof Context, extensionsClasses?: (typeof Extension)[]): Factory {
         const factory = new Factory(rootContextClass, extensionsClasses);
         factory.create();
         return factory;
