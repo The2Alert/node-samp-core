@@ -9,7 +9,7 @@ export interface PlayerObjectAttachOptions {
 export class PlayerObject {
     public static create(options: ObjectOptions, player: Player): PlayerObject {
         const object = new PlayerObject(options, player);
-        return object;
+        return object.create();
     }
 
     public static isValid(object: PlayerObject): boolean {

@@ -23,7 +23,7 @@ export interface PlayerTextDrawOptions extends Position2D {
 export class PlayerTextDraw {
     public static create(options: PlayerTextDrawOptions, player: Player): PlayerTextDraw {
         const textdraw = new PlayerTextDraw(options, player);
-        return textdraw;
+        return textdraw.create();
     }
 
     public static getById(id: number, player: Player): PlayerTextDraw {
