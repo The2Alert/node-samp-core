@@ -21,7 +21,7 @@ export class Factory extends ctx.Factory {
     public gamemode: InstanceType<typeof GameMode.Factory> | null;
 
     constructor(rootContextClass: typeof Context, {gamemodeFactory = null, commands = false, keys = false, dialogs = false, extensions = []}: FactoryOptions) {
-        super(rootContextClass, extensions);
+        super(rootContextClass, extensions as (typeof ctx.Extension)[]);
         this.options = {gamemodeFactory, commands, keys, dialogs, extensions};
         this.gamemode = gamemodeFactory;
     }
@@ -88,7 +88,7 @@ export class Factory extends ctx.Factory {
     }
 
     public create(): void {
-        super.create();
+        this.checkRootContext();
         Player.on("connect", (player) => {
             this.createPersonal(player);
             player.retval = this.getPersonal(player).callEvent("onConnect");
@@ -262,5 +262,6 @@ export class Factory extends ctx.Factory {
             Dialog.response.init();
             this.createDialogs(this.rootContextClass as typeof Context);
         }
+        this.createExtensions();
     }
 }

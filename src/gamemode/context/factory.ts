@@ -2,12 +2,11 @@ import * as ctx from "ctx-api";
 import {Extension} from ".";
 import {GameMode, Actor, SampObject, Player, Rcon, Vehicle} from "../..";
 import {Context} from "./context";
-import {ContextEvents} from "./context-events";
 import {PersonalFactory} from "./personal-factory";
 
 export class Factory extends ctx.Factory {
     public static create(rootContextClass: typeof Context, extensionsClasses?: (typeof Extension)[]): Factory {
-        const factory = new Factory(rootContextClass, extensionsClasses);
+        const factory = new Factory(rootContextClass, extensionsClasses as (typeof ctx.Extension)[]);
         factory.create();
         return factory;
     }
@@ -24,12 +23,12 @@ export class Factory extends ctx.Factory {
         return this.removePersonalById(0);
     }
 
-    public callEvent<EventName extends keyof ContextEvents>(name: EventName, ...args: Parameters<ContextEvents[EventName]>): number | undefined {
+    public callEvent(name: string, ...args: any[]): number | undefined {
         return this.getPersonal().callEvent(name, ...args);
     }
 
     public create(): void {
-        super.create();
+        this.checkRootContext();
         GameMode.on("init", (gamemode) => {
             this.createPersonal();
             gamemode.retval = this.callEvent("onInit");
@@ -200,5 +199,6 @@ export class Factory extends ctx.Factory {
         Vehicle.on("siren-state-change", (player, vehicle, state) => {
             vehicle.retval = this.callEvent("onVehicleSirenStateChange", player, vehicle, state);
         });
+        this.createExtensions();
     }
 }
