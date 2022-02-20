@@ -55,4 +55,8 @@ export class PlayerText3DLabel {
     public update(player: Player, text: string, color: number = 0xFFFFFFAA): void {
         amx.callNative("UpdatePlayer3DTextLabelText", "iiis", player.id, this.id, color, text);
     }
+
+    public is(label: PlayerText3DLabel): boolean {
+        return this.id === label.id;
+    }
 }

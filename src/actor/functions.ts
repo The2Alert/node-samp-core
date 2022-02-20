@@ -104,4 +104,8 @@ export class ActorFunctions {
     public get invulnerable(): boolean {
         return Boolean(amx.callNative("IsActorInvulnerable", "i", this.id).retval);
     }
+
+    public is(actor: Actor): boolean {
+        return this.id === actor.id;
+    }
 }

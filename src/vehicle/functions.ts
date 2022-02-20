@@ -276,4 +276,8 @@ export class VehicleFunctions {
     public get world(): number {
         return amx.callNative("GetVehicleVirtualWorld", "i", this.id).retval;
     }
+
+    public is(vehicle: Vehicle): boolean {
+        return this.id === vehicle.id;
+    }
 }

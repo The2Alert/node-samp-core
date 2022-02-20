@@ -1,6 +1,6 @@
 {
   "name": "@sa-mp/core",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Core for NodeSamp.",
   "keywords": ["nodesamp", "sa-mp", "samp", "core"],
   "repository": "github:dev2alert/node-samp-core",

@@ -96,4 +96,8 @@ export class PlayerObject {
     public materialText({text, index = 0, size = ObjectMaterialSize["256x128"], fontFace = "Arial", fontSize = 24, bold = true, color = 0xFFFFFFFF, backgroundColor = 0, align = ObjectMaterialTextAlignments.LEFT}: ObjectMaterialTextOptions): void {
         amx.callNative("SetPlayerObjectMaterialText", "iisiisiiiii", this.player.id, this.id, text, index, size, fontFace, fontSize, Number(bold), color, backgroundColor, align);
     }
+
+    public is(object: PlayerObject): boolean {
+        return this.id === object.id;
+    }
 }

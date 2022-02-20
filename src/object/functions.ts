@@ -134,4 +134,8 @@ export class ObjectFunctions {
     public materialText({text, index = 0, size = ObjectMaterialSize["256x128"], fontFace = "Arial", fontSize = 24, bold = true, color = 0xFFFFFFFF, backgroundColor = 0, align = ObjectMaterialTextAlignments.LEFT}: ObjectMaterialTextOptions): boolean {
         return Boolean(amx.callNative("SetObjectMaterialText", "isiisiiiii", this.id, text, index, size, fontFace, fontSize, Number(bold), color, backgroundColor, align).retval);
     }
+
+    public is(object: SampObject): boolean {
+        return this.id === object.id;
+    }
 }

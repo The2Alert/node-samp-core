@@ -150,4 +150,8 @@ export class PlayerTextDraw {
     public set previewVehCol([color1, color2]: [number, number]) {
         amx.callNative("PlayerTextDrawSetPreviewVehCol", "iiii", this.player.id, this.id, color1, color2);
     }
+
+    public is(textdraw: PlayerTextDraw): boolean {
+        return this.id === textdraw.id;
+    }
 }

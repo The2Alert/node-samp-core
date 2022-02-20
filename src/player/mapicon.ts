@@ -26,4 +26,8 @@ export class MapIcon implements PlayerMapIconOptions {
         this.color = color;
         this.style = style;
     }
+
+    public is(icon: MapIcon): boolean {
+        return this.id === icon.id;
+    }
 }

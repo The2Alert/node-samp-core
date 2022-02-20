@@ -782,4 +782,8 @@ export class PlayerFunctions {
     public toString(): string {
         return this.name + "[" + this.id + "]";
     }
+
+    public is(player: Player): boolean {
+        return this.id === player.id;
+    }
 }

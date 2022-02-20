@@ -40,4 +40,8 @@ export class Pickup {
     public destroy(): void {
         amx.callNative("DestroyPickup", "i", this.id);
     }
+
+    public is(pickup: Pickup): boolean {
+        return this.id === pickup.id;
+    }
 }

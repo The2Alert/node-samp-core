@@ -67,4 +67,8 @@ export class GangZone {
     public stopFlashForAll(): boolean {
         return Boolean(amx.callNative("GangZoneStopFlashForAll", "i", this.id).retval);
     }
+
+    public is(zone: GangZone): boolean {
+        return this.id === zone.id;
+    }
 }

@@ -37,4 +37,8 @@ export class Dialog implements ShowDialogOptions {
         this.info = info;
         this.buttons = buttons;
     }
+
+    public is(dialog: Dialog): boolean {
+        return this.id === dialog.id;
+    }
 }

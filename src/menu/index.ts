@@ -86,4 +86,8 @@ export class Menu {
     public disableRow(row: number): void {
         amx.callNative("DisableMenuRow", "ii", this.id, row);
     }
+
+    public is(menu: Menu): boolean {
+        return this.id === menu.id;
+    }
 }

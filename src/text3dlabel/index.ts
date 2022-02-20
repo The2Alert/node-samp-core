@@ -58,4 +58,8 @@ export class Text3DLabel {
     public update(text: string, color: number = 0xFFFFFFAA): void {
         amx.callNative("Update3DTextLabelText", "iis", this.id, color, text);
     }
+
+    public is(label: Text3DLabel): boolean {
+        return this.id === label.id;
+    }
 }
