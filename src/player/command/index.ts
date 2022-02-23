@@ -40,8 +40,8 @@ export namespace command {
     export const paramTypes: Record<string, CommandParamType> = {
         b: {regexp: "[0-1]+", parser: (value) => Boolean(Number(value))},
         i: {regexp: "[-]?[0-9]+", parser: Number},
-        f: {regexp: "[-]?[0-9]+[.,][0-9]+", parser: Number},
-        n: {regexp: "[-]?[0-9]*[.,]?[0-9]+", parser: Number},
+        f: {regexp: "[-]?[0-9]+[.,][0-9]+", parser: (value: any) => Number(String(value).replace(",", "."))},
+        n: {regexp: "[-]?[0-9]*[.,]?[0-9]+", parser: (value: any) => Number(String(value).replace(",", "."))},
         s: {regexp: ".+", parser: String},
         w: {regexp: "[^ ]+", parser: String}
     };
