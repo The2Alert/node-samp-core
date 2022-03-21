@@ -29,8 +29,8 @@ export class Factory extends ctx.Factory {
 
     public create(): void {
         this.checkRootContext();
+        this.createPersonal();
         GameMode.on("init", (gamemode) => {
-            this.createPersonal();
             gamemode.retval = this.callEvent("onInit");
         });
         GameMode.on("exit", (gamemode) => {
